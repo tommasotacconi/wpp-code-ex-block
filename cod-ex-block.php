@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: Coding example code block
  * Description: A custom code block with consistent styling but editable content per page.
