@@ -1,7 +1,7 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { InnerBlocks } from '@wordpress/block-editor';
 
-registerBlockType('plugin-cod-ex-block/code-ex-block', {
+registerBlockType('plugin-cod-ex-block/cod-ex-block', {
 	edit() {
 		return (
 			<pre className="cod-ex-block">
