@@ -5,8 +5,18 @@
 	"category": "widgets",
 	"icon": "editor-code",
 	"description": "A styled code block editable per page.",
+	"attributes": {
+		"content": {
+			"type": "string",
+			"source": "text",
+			"selector": "code",
+			"default": ""
+		}
+	},
 	"supports": {
-		"html": false
+		"html": false,
+		"lock": false,
+		"reusable": true
 	},
 	"editorScript": "file:./index.js",
 	"style": "file:../style.css"

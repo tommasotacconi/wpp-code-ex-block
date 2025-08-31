@@ -1,23 +1,36 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 registerBlockType('plugin-cod-ex-block/cod-ex-block', {
-	edit() {
+	edit({ attributes, setAttributes }) {
+		const { content } = attributes;
+		const blockProps = useBlockProps();
+		
 		return (
-			<pre className="cod-ex-block">
-				<code>
-					<InnerBlocks />
-				</code>
-			</pre>
+			<div {...blockProps}>
+				<pre className="cod-ex-block">
+					<RichText
+						tagName="code"
+						value={content}
+						onChange={(content) => setAttributes({ content })}
+						placeholder="Enter your code here..."
+						preserveWhiteSpace
+						__unstableDisableFormats
+						/>
+				</pre>
+			</div>
 		);
 	},
-	save() {
+	save({ attributes }) {
+		const { content } = attributes;
+		const blockProps = useBlockProps.save();
+
 		return (
-			<pre className="cod-ex-block">
-				<code>
-					<InnerBlocks.Content />
-				</code>
-			</pre>
+			<div {...blockProps}>
+				<pre className="cod-ex-block">
+					<code>{content}</code>
+				</pre>
+			</div>
 		);
 	}
 });
