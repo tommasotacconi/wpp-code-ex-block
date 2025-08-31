@@ -8,9 +8,8 @@
 	"attributes": {
 		"content": {
 			"type": "string",
-			"source": "text",
-			"selector": "code",
-			"default": ""
+			"source": "meta",
+			"meta": "codex_content"
 		}
 	},
 	"supports": {
