@@ -29,7 +29,7 @@ add_filter('render_block', function ($block_content, $block) {
 	$meta_value = get_post_meta(get_the_ID(), 'codex_content', true);
 
 	if (!empty($meta_value))
-		// Add language classj for syntax highlighting
+		// Add language class for syntax highlighting
 		$block_content = str_replace('<code></code>', '<code class="language-javascript">' . esc_html($meta_value) . '</code>', $block_content);
 
 	return $block_content;
@@ -46,7 +46,7 @@ add_action('init', 'cod_ex_block_register');
 add_action('wp_enqueue_scripts', function () {
 	// Enqueue Prism CSS and JS
 	wp_enqueue_style('prismjs-css', 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-dark.min.css');
-	wp_enqueue_script('prismjs-js', 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js', array('prismjs-js'), null, true);
+	wp_enqueue_script('prismjs-js', 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js', array(), null, true);
 
 	// Add language components you need
 	wp_enqueue_script('prismjs-autoloader', 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js', array('prismjs-js'), null, true);
