@@ -28,11 +28,11 @@ add_filter('render_block', function ($block_content, $block) {
 
 	$meta_value = get_post_meta(get_the_ID(), 'codex_content', true);
 
-	if (!empty($meta_value)) 
+	if (!empty($meta_value))
 		$block_content = str_replace('<code></code>', '<code>' . esc_html($meta_value) . '</code>', $block_content);
 
 	return $block_content;
-}, 10, 2)
+}, 10, 2);
 
 function cod_ex_block_register()
 {
