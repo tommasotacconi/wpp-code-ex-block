@@ -3,7 +3,7 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 registerBlockType('plugin-cod-ex-block/cod-ex-block', {
 	edit({ attributes, setAttributes }) {
-		const { content } = attributes;
+		const { codex_content } = attributes;
 		const blockProps = useBlockProps();
 		
 		return (
@@ -11,8 +11,8 @@ registerBlockType('plugin-cod-ex-block/cod-ex-block', {
 				<pre className="cod-ex-block">
 					<RichText
 						tagName="code"
-						value={content}
-						onChange={(content) => setAttributes({ content })}
+						value={codex_content}
+						onChange={(codex_content) => setAttributes({ codex_content })}
 						placeholder="Enter your code here..."
 						preserveWhiteSpace
 						__unstableDisableFormats
@@ -22,13 +22,13 @@ registerBlockType('plugin-cod-ex-block/cod-ex-block', {
 		);
 	},
 	save({ attributes }) {
-		const { content } = attributes;
+		const { codex_content } = attributes;
 		const blockProps = useBlockProps.save();
 
 		return (
 			<div {...blockProps}>
 				<pre className="cod-ex-block">
-					<code>{content}</code>
+					<code>{codex_content}</code>
 				</pre>
 			</div>
 		);
