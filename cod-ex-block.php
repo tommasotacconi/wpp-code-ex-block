@@ -45,9 +45,9 @@ add_action('init', 'cod_ex_block_register');
 // Enqueing scripts for syntex highlighting (Prism.js)
 add_action('wp_enqueue_scripts', function () {
 	// Enqueue Prism CSS and JS
-	wp_enqueue_style('prismjs-css', 'https://cdnjs.cloudfare.com/ajax/libs/prism/1.29.0/themes/prism-dark.min.css');
-	wp_enqueue_script('prismjs-js', 'https://cdnjs.cloudfare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js', array('prism-js'), null, true);
+	wp_enqueue_style('prismjs-css', 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-dark.min.css');
+	wp_enqueue_script('prismjs-js', 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js', array('prismjs-js'), null, true);
 
 	// Add language components you need
-	wp_enqueue_script('prismjs-autoloader', 'https://cdnjs.cloudfare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js', array('prismjs-js'), null, true);
+	wp_enqueue_script('prismjs-autoloader', 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js', array('prismjs-js'), null, true);
 });
