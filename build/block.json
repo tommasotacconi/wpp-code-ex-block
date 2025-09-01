@@ -6,7 +6,7 @@
 	"icon": "editor-code",
 	"description": "A styled code block editable per page.",
 	"attributes": {
-		"content": {
+		"codex_content": {
 			"type": "string",
 			"source": "meta",
 			"meta": "codex_content"
