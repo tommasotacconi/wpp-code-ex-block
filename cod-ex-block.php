@@ -7,6 +7,11 @@
  * Author: Tommaso Tacconi
  */
 
+// Prevent direct access
+if (!defined('ABSPATH')) {
+	exit;
+}
+
 // Register the meta field
 add_action('init', function () {
 	register_post_meta('page', 'codex_content', array(
@@ -15,6 +20,19 @@ add_action('init', function () {
 		'type' => 'string'
 	));
 });
+
+// Render the meta content on frontend
+add_filter('render_block', function ($block_content, $block) {
+	if ($block['blockName'] !== 'plugin-cod-ex-block/cod-ex-block')
+		return $block_content;
+
+	$meta_value = get_post_meta(get_the_ID(), 'codex_content', true);
+
+	if (!empty($meta_value)) 
+		$block_content = str_replace('<code></code>', '<code>' . esc_html($meta_value) . '</code>', $block_content);
+
+	return $block_content;
+}, 10, 2)
 
 function cod_ex_block_register()
 {
