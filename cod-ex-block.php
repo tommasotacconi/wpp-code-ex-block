@@ -9,7 +9,7 @@
 
 // Register the meta field
 add_action('init', function () {
-	register_post_meta('', 'codex_content', array(
+	register_post_meta('page', 'codex_content', array(
 		'show_in_rest' => true,
 		'single' => true,
 		'type' => 'string'
