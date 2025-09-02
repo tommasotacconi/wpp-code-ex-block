@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "code-ex/code",
+	"name": "cod-ex/code",
 	"title": "Custom code block for coding example",
 	"category": "widgets",
 	"icon": "editor-code",
@@ -18,5 +18,4 @@
 		"reusable": true
 	},
 	"editorScript": "file:./index.js",
-	"style": "file:../style.css"
 }
