@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-		"build": "wp-scripts build",
+		"build:clean": "rimraf build && wp-scripts build",
 		"start": "wp-scripts start"
   },
   "keywords": [],
