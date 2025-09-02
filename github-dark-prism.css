@@ -1,0 +1,172 @@
+/**
+ *	VS Code GitHub Dark theme for Prism.js
+ *	Based on VS Code's GitHub dark theme colors	
+ */
+
+ /* Base styling */
+ .cod-ex-block {
+	background: #0d1117 !important;
+	color: #e6edf3 !important;
+	border-radius: 6px;
+	padding: 16px;
+	margin: 20px 0;
+	overflow-x: auto;
+	font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, 'Courier New', monospace;
+	font-size: 14px;
+	line-height: 1.45;
+	border: 1px solid #21262d
+ }
+
+ .cod-ex-block code {
+	background: transparent !important;
+	color: inherit !important;
+	padding: 0 !important;
+	font-family: inherit;
+	font-size: inherit;
+ }
+
+ /* Prism.js GitHub dark theme */
+ code[class*="language-"],
+ pre[class*="language-"] {
+	color: #e6edf3;
+	background: #0d1117;
+	font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, 'Courier New', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+	tab-size: 4;
+	hyphens: none;
+ }
+ 
+ pre[class*="language-"] {
+	padding: 1em;
+	margin: 0.5em 0;
+	overflow: auto;
+	border-radius: 6px;
+	background: #0d1117;
+ }
+
+:not(pre) > code[class*="language-"] {
+	background: #0d1117;
+}
+
+:not(pre) > code[class*="language-"] {
+	padding: 0.1em;
+	border-radius: 0.3em;
+	white-space: normal;
+}
+
+/* Tokens */
+.token-comment,
+.token-prolog,
+.token-doctype,
+.token-cdata {
+	color: #8b949e; /* GitHuh Dark comment */
+	font-style: italic;
+}
+
+.token.punctuation {
+	color: #e6edf3;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f85149; /* GitHub Dark dark red */
+}
+
+.token.boolean,
+.token.number {
+	color: #79c0ff; /* GitHub Dark blue */
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a5d6ff; /* GitHub Dark light blue */
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #ff7b72; /* GitHub Dark light red */
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #d2a8ff; /* GitHub Dark purple */
+}
+
+.token.keyword {
+	color: #ff7b72 /* GitHub Dark kyeword red */
+}
+
+.token.regex,
+.token.important {
+	color: #ffa657; /* GitHub Dark orange */
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+/* Line highlighting */
+.line-highlighting {
+	background: rgba(158, 203, 255, .1);
+}
+
+/* Selection */
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
+	background: #1f6feb4d;
+}
+
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
+	background: #1f6feb4d;
+}
+
+/* Scrollbar */
+pre[class*="language-"]::-webkit-scrollbar {
+	height: 8px;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-track {
+	background: #21262d;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-thumb {
+	background: #484f58;
+	border-radius: 4px;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-thumb:hover {
+	background: #6e7681;
+}
+
