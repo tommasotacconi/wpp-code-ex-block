@@ -23,7 +23,7 @@ add_action('init', function () {
 
 // Render the meta content on frontend
 add_filter('render_block', function ($block_content, $block) {
-	if ($block['blockName'] !== 'plugin-cod-ex-block/cod-ex-block')
+	if ($block['blockName'] !== 'cod-ex/code')
 		return $block_content;
 
 	$meta_value = get_post_meta(get_the_ID(), 'codex_content', true);
@@ -35,12 +35,12 @@ add_filter('render_block', function ($block_content, $block) {
 	return $block_content;
 }, 10, 2);
 
-function cod_ex_block_register()
+function cod_ex_register()
 {
 	// Register the block from build/index.js
 	register_block_type(__DIR__ . '/build');
 }
-add_action('init', 'cod_ex_block_register');
+add_action('init', 'cod_ex_register');
 
 // Enqueing scripts for syntex highlighting (Prism.js)
 add_action('wp_enqueue_scripts', function () {

@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "plugin-cod-ex-block/cod-ex-block",
+	"name": "code-ex/code",
 	"title": "Custom code block for coding example",
 	"category": "widgets",
 	"icon": "editor-code",

@@ -1,7 +1,7 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
-registerBlockType('plugin-cod-ex-block/cod-ex-block', {
+registerBlockType('cod-ex/code', {
 	edit({ attributes, setAttributes }) {
 		const { codex_content } = attributes;
 		const blockProps = useBlockProps();
