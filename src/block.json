@@ -17,5 +17,5 @@
 		"lock": false,
 		"reusable": true
 	},
-	"editorScript": "file:./index.js",
+	"editorScript": "file:./index.js"
 }
