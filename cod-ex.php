@@ -30,7 +30,7 @@ add_filter('render_block', function ($block_content, $block) {
 
 	if (!empty($meta_value))
 		// Add language class for syntax highlighting
-		$block_content = str_replace('<code></code>', '<code class="language-javascript">' . esc_html($meta_value) . '</code>', $block_content);
+		$block_content = str_replace('<code></code>', '<code class="language-javascript typewriter">' . esc_html($meta_value) . '</code>', $block_content);
 
 	return $block_content;
 }, 10, 2);
@@ -42,7 +42,7 @@ function cod_ex_register()
 }
 add_action('init', 'cod_ex_register');
 
-// Enqueing scripts for syntex highlighting (Prism.js)
+// Enqueue scripts for syntex highlighting (Prism.js)
 add_action('wp_enqueue_scripts', function () {
 	// Enqueue Prism CSS and JS
 	wp_enqueue_style('prismjs-css', plugin_dir_url(__FILE__) . 'github-dark-prism.css');
@@ -50,4 +50,9 @@ add_action('wp_enqueue_scripts', function () {
 
 	// Add language components you need
 	wp_enqueue_script('prismjs-autoloader', 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js', array('prismjs-js'), null, true);
+});
+
+// Enqueue scripts for typewriter effect with real typing errors simulation
+add_action('wp_enqueue_scripts', function () {
+	wp_enqueue_scripts('typewriter-effect', plugin_dir_url(__FILE__) . 'src/typewriter.js', array(), '1.0.0', true);
 });
