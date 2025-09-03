@@ -5,7 +5,7 @@
 
  /* Base styling */
  .cod-ex-block {
-	background: #0d1117 !important;
+	background: #24292f !important;
 	color: #e6edf3 !important;
 	border-radius: 6px;
 	padding: 16px;
@@ -29,7 +29,7 @@
  code[class*="language-"],
  pre[class*="language-"] {
 	color: #e6edf3;
-	background: #0d1117;
+	background: #24292f;
 	font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, 'Courier New', monospace;
 	text-align: left;
 	white-space: pre;
@@ -46,12 +46,13 @@
 	margin: 0.5em 0;
 	overflow: auto;
 	border-radius: 6px;
-	background: #0d1117;
+	/* background: #0d1117; */
  }
 
-:not(pre) > code[class*="language-"] {
+/* :not(pre) > code[class*="language-"],
+pre[class*="language-"] {
 	background: #0d1117;
-}
+} */
 
 :not(pre) > code[class*="language-"] {
 	padding: 0.1em;
@@ -60,12 +61,12 @@
 }
 
 /* Tokens */
-.token-comment,
-.token-prolog,
-.token-doctype,
-.token-cdata {
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
 	color: #8b949e; /* GitHuh Dark comment */
-	font-style: italic;
+	/* font-style: italic; */
 }
 
 .token.punctuation {
@@ -157,13 +158,17 @@ pre[class*="language-"]::-webkit-scrollbar {
 	height: 8px;
 }
 
+pre[class*="language-"]::-webkit-scrollbar-track,
+pre[class*="language-"]::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+}
+
 pre[class*="language-"]::-webkit-scrollbar-track {
 	background: #21262d;
 }
 
 pre[class*="language-"]::-webkit-scrollbar-thumb {
 	background: #484f58;
-	border-radius: 4px;
 }
 
 pre[class*="language-"]::-webkit-scrollbar-thumb:hover {
