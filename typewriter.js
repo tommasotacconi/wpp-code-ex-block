@@ -133,7 +133,7 @@ class TypewriterWithTags {
             // Use textContent to preserve whitespace and line feeds
             node.element.textContent = node.currentText;
 
-						console.log(`Added "${char}" to node ${this.currentNodeIndex}. Node text now: "${node.currentNodeText}"`);
+						console.log(`Added "${char}" to node ${this.currentNodeIndex}. Node text now: "${node.currentText}"`);
 						console.log(`DOM element textContent: "${node.element.textContent}"`);
 						console.log(`DOM element in page:`, node.element);
         } else {
