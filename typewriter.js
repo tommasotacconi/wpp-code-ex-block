@@ -204,22 +204,20 @@ class TypewriterWithTags {
         const nextChar = this.getNextChar();
 				console.log(`Next char: ${nextChar ? `"${nextChar}"` : 'null'}`);
 
-				this.addCharToCurrentPosition(nextChar);
-				this.currentCharIndex++;
-				console.log(`After typing: nodeIndex=${this.currentNodeIndex}, charIndex=${this.currentCharIndex}`);
         
         if (nextChar !== null) {
-            // Debug: log line feeds and special characters
-            if (nextChar === '\n') {
-                console.log(`Typing line feed at position ${currentPosition}`);
-            } else if (nextChar === '\r') {
-                console.log(`Typing carriage return at position ${currentPosition}`);
-            } else if (nextChar === '\t') {
+					// Debug: log line feeds and special characters
+					if (nextChar === '\n') {
+						console.log(`Typing line feed at position ${currentPosition}`);
+					} else if (nextChar === '\r') {
+						console.log(`Typing carriage return at position ${currentPosition}`);
+					} else if (nextChar === '\t') {
                 console.log(`Typing tab at position ${currentPosition}`);
             }
             
             this.addCharToCurrentPosition(nextChar);
             this.currentCharIndex++;
+						console.log(`After typing: nodeIndex=${this.currentNodeIndex}, charIndex=${this.currentCharIndex}`);
             
             // Continue typing
             setTimeout(() => this.type(), this.speed);
