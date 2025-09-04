@@ -288,4 +288,4 @@ function initTypewriter() {
 
 // Try multiple events to catch when elements are ready
 document.addEventListener('DOMContentLoaded', initTypewriter);
-window.addEventListener('load', initTypewriter);
+// window.addEventListener('load', initTypewriter);
