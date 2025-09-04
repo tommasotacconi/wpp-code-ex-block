@@ -202,22 +202,56 @@ class TypewriterWithTags {
     }
 }
 
-// Usage
-document.addEventListener('DOMContentLoaded', function () {
-	const codeBlocks = document.querySelectorAll('code.typewriter');
-	
-	codeBlocks.forEach(block => {
-		// Only initialized if it has content and hasn't been initialized
-		if (block.innerHTML.trim() && !block.hasAttribute('data-typewriter-initialized')) {
-			block.setAttribute('data-typewriter-initialized', true);
+// Multiple initialization methods to ensure it works
+function initTypewriter() {
+    console.log('Initializing typewriter...');
+    
+    // Try multiple selectors to find your elements
+    const selectors = [
+        'code.typewriter',
+        '.typewriter-content code',
+        '.typewriter-code-block code',
+        'code[data-content]',
+        '.typewriter'
+    ];
+    
+    let found = false;
+    
+    selectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        console.log(`Found ${elements.length} elements with selector: ${selector}`);
+        
+        elements.forEach((block, index) => {
+            console.log(`Element ${index}:`, block);
+            console.log(`Content:`, block.innerHTML);
+            
+            // Only initialize if it has content and hasn't been initialized
+            if (block.innerHTML.trim() && !block.hasAttribute('data-typewriter-initialized')) {
+                console.log(`Initializing typewriter on element ${index}`);
+                block.setAttribute('data-typewriter-initialized', 'true');
+                found = true;
+                
+                new TypewriterWithTags(block, {
+                    speed: 100,
+                    errorSpeed: 800,
+                    backspaceSpeed: 60,
+                    errorCount: 3,
+                    typos: ['sr', 'p', 'eb', 'è', '+', 'x', 'q']
+                });
+            } else if (block.hasAttribute('data-typewriter-initialized')) {
+                console.log(`Element ${index} already initialized`);
+            } else {
+                console.log(`Element ${index} has no content`);
+            }
+        });
+    });
+    
+    if (!found) {
+        console.log('No typewriter elements found, retrying in 500ms...');
+        setTimeout(initTypewriter, 500);
+    }
+}
 
-			new TypewriterWithTags(block, {
-					speed: null,
-					errorSpeed: null,
-					backspaceSpeed: null,
-					errorCount: null,
-					typos: ['sr', 'p', 'eb', 'è', '+', 'x', 'q']
-			});
-		}
-	});
-});
+// Try multiple events to catch when elements are ready
+document.addEventListener('DOMContentLoaded', initTypewriter);
+window.addEventListener('load', initTypewriter);
