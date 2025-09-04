@@ -36,8 +36,8 @@ class TypewriterWithTags {
         const temp = document.createElement('div');
         temp.innerHTML = this.originalHTML;
         
-				console.log('Original HTML:', this.originalHTML);
-				console.log('Temp element:', temp);
+				// console.log('Original HTML:', this.originalHTML);
+				// console.log('Temp element:', temp);
 
         this.textNodes = [];
         this.totalChars = 0;
@@ -45,9 +45,9 @@ class TypewriterWithTags {
         // Recursively traverse and collect text nodes with their positions
         this.traverseNodes(temp, this.element);
 
-				console.log(`Parsed ${this.textNodes.length} text nodes, total chars: ${this.totalChars}`);
+				// console.log(`Parsed ${this.textNodes.length} text nodes, total chars: ${this.totalChars}`);
 				this.textNodes.forEach((node, i) => {
-					console.log(`Node ${i}: "${node.originalText}" (${node.originalText.length} chars)`);
+					// console.log(`Node ${i}: "${node.originalText}" (${node.originalText.length} chars)`);
 				});
     }
     
@@ -59,9 +59,9 @@ class TypewriterWithTags {
                     const textElement = document.createTextNode('');
                     targetParent.appendChild(textElement);
 
-										console.log(`Created text node for: "${child.textContent}"`);
-										console.log(`Text element:`, textElement);
-										console.log(`Appended to:`, targetParent);
+										// console.log(`Created text node for: "${child.textContent}"`);
+										// console.log(`Text element:`, textElement);
+										// console.log(`Appended to:`, targetParent);
                     
                     this.textNodes.push({
                         element: textElement,
@@ -76,7 +76,7 @@ class TypewriterWithTags {
                 // It's an element node, recreate it and traverse its children
                 const newElement = document.createElement(child.tagName.toLowerCase());
 
-								console.log(`Created element: ${child.tagName.toLowerCase()}`);
+								// console.log(`Created element: ${child.tagName.toLowerCase()}`);
                 
                 // Copy attributes
                 for (let attr of child.attributes) {
@@ -84,7 +84,7 @@ class TypewriterWithTags {
                 }
                 
                 targetParent.appendChild(newElement);
-								console.log(`Appended ${child.tagName.toLowerCase()} to:`, targetParent);
+								// console.log(`Appended ${child.tagName.toLowerCase()} to:`, targetParent);
 
                 this.traverseNodes(child, newElement);
             }
@@ -100,7 +100,7 @@ class TypewriterWithTags {
             }
         }
         this.errorPoints.sort((a, b) => a - b);
-        console.log('Error points:', this.errorPoints);
+        // console.log('Error points:', this.errorPoints);
     }
     
     getCurrentPosition() {
@@ -133,11 +133,11 @@ class TypewriterWithTags {
             // Use textContent to preserve whitespace and line feeds
             node.element.textContent = node.currentText;
 
-						console.log(`Added "${char}" to node ${this.currentNodeIndex}. Node text now: "${node.currentText}"`);
-						console.log(`DOM element textContent: "${node.element.textContent}"`);
-						console.log(`DOM element in page:`, node.element);
+						// console.log(`Added "${char}" to node ${this.currentNodeIndex}. Node text now: "${node.currentText}"`);
+						// console.log(`DOM element textContent: "${node.element.textContent}"`);
+						// console.log(`DOM element in page:`, node.element);
         } else {
-					console.log(`ERROR: Trying to add char to node ${this.currentNodeIndex} but only have ${this.textNodes.length} nodes`);
+					// console.log(`ERROR: Trying to add char to node ${this.currentNodeIndex} but only have ${this.textNodes.length} nodes`);
 				}
     }
     
@@ -155,37 +155,37 @@ class TypewriterWithTags {
     }
     
     getNextChar() {
-				console.log(`getNextChar: nodeIndex=${this.currentNodeIndex}, charIndex=${this.currentCharIndex}, totalNodes=${this.textNodes.length}`);
+				// console.log(`getNextChar: nodeIndex=${this.currentNodeIndex}, charIndex=${this.currentCharIndex}, totalNodes=${this.textNodes.length}`);
 
         if (this.currentNodeIndex < this.textNodes.length) {
             const node = this.textNodes[this.currentNodeIndex];
-						console.log(`Current node text length: ${node.originalText.length}`);
+						// console.log(`Current node text length: ${node.originalText.length}`);
 
             if (this.currentCharIndex < node.originalText.length) {
                 const char = node.originalText[this.currentCharIndex];
-								console.log(`Returning char: "${char}" (code: ${char.charCodeAt(0)})`);
+								// console.log(`Returning char: "${char}" (code: ${char.charCodeAt(0)})`);
 								return char;
             } else {
                 // Move to next node
-								console.log(`Moving to next node from ${this.currentNodeIndex} to ${this.currentNodeIndex + 1}`);
+								// console.log(`Moving to next node from ${this.currentNodeIndex} to ${this.currentNodeIndex + 1}`);
                 this.currentNodeIndex++;
                 this.currentCharIndex = 0;
 
 								if (this.currentNodeIndex >= this.textNodes.length) {
-									console.log(`Reached end of nodes`);
+									// console.log(`Reached end of nodes`);
 									return null;
 								}
 
                 return this.getNextChar();
             }
         }
-				console.log(`No more characters - end of typing`);
+				// console.log(`No more characters - end of typing`);
         return null;
     }
     
     async type() {
         const currentPosition = this.getCurrentPosition();
-        console.log(`type() called - position: ${currentPosition}, nodeIndex: ${this.currentNodeIndex}, charIndex: ${this.currentCharIndex}`);
+        // console.log(`type() called - position: ${currentPosition}, nodeIndex: ${this.currentNodeIndex}, charIndex: ${this.currentCharIndex}`);
 
 				// Safety check to prevent infinite loops
 				if (currentPosition > this.totalChars) {
@@ -202,34 +202,34 @@ class TypewriterWithTags {
         
         // Get the next character to type
         const nextChar = this.getNextChar();
-				console.log(`Next char: ${nextChar ? `"${nextChar}"` : 'null'}`);
+				// console.log(`Next char: ${nextChar ? `"${nextChar}"` : 'null'}`);
 
         
         if (nextChar !== null) {
 					// Debug: log line feeds and special characters
 					if (nextChar === '\n') {
-						console.log(`Typing line feed at position ${currentPosition}`);
+						// console.log(`Typing line feed at position ${currentPosition}`);
 					} else if (nextChar === '\r') {
-						console.log(`Typing carriage return at position ${currentPosition}`);
+						// console.log(`Typing carriage return at position ${currentPosition}`);
 					} else if (nextChar === '\t') {
-                console.log(`Typing tab at position ${currentPosition}`);
+                // console.log(`Typing tab at position ${currentPosition}`);
             }
             
             this.addCharToCurrentPosition(nextChar);
             this.currentCharIndex++;
-						console.log(`After typing: nodeIndex=${this.currentNodeIndex}, charIndex=${this.currentCharIndex}`);
+						// console.log(`After typing: nodeIndex=${this.currentNodeIndex}, charIndex=${this.currentCharIndex}`);
             
             // Continue typing
             setTimeout(() => this.type(), this.speed);
         } else {
-            console.log('Typing completed');
+            // console.log('Typing completed');
         }
     }
     
     async handleError() {
         // Add a random typo
         const typo = this.typos[Math.floor(Math.random() * this.typos.length)];
-        console.log(`Making error at position ${this.getCurrentPosition()}: ${typo}`);
+        // console.log(`Making error at position ${this.getCurrentPosition()}: ${typo}`);
         
         // Type the typo
         for (let char of typo) {
@@ -250,14 +250,14 @@ class TypewriterWithTags {
 
 // Multiple initialization methods to ensure it works
 function initTypewriterAfterPrism() {
-	console.log('Prism highlighting completed, initializing typeweriter...');
+	// console.log('Prism highlighting completed, initializing typeweriter...');
 
 	const codeBlocks = document.querySelectorAll('code.language-javascript, code.language-php, code[class*="language-"]');
 	
 	codeBlocks.forEach(block => {
 		if (block.innerHTML.trim() && !block.hasAttribute('data-typewriter-initialized')) {
-			console.log('Initializing typewriter on:', block);
-			console.log('Block HTML after Prism:', block.innerHTML);
+			// console.log('Initializing typewriter on:', block);
+			// console.log('Block HTML after Prism:', block.innerHTML);
 
 			block.setAttribute('data-typewriter-initialized', 'true');
 			
@@ -276,12 +276,12 @@ function initTypewriterAfterPrism() {
 document.addEventListener('DOMContentLoaded', function () {
 	// Hook into Prism's after-highlight event
 	Prism.hooks.add('after-highlight', function(env) {
-		console.log('Prism highlighted:', env.element);
+		// console.log('Prism highlighted:', env.element);
 
 		// Small delay to ensure DOM is updated
 		setTimeout(() => {
 			if (env.element && !env.element.hasAttribute('data-typewriter-initialized')) {
-				console.log('Initializing typewriter after Prism highlight');
+				// console.log('Initializing typewriter after Prism highlight');
 				env.element.setAttribute('data-typewriter-initialized', 'true');
 
 				new TypewriterWithTags(env.element, {
@@ -297,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// Also try the complete event (fires after all highlighting is done)
 	/* Prism.hooks.add('complete', function (env) {
-		console.log('All Prism highlighting complete');
+		// console.log('All Prism highlighting complete');
 		setTimeout(initTypewriterAfterPrism, 100);
 	}); */
 });
