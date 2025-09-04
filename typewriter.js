@@ -36,11 +36,19 @@ class TypewriterWithTags {
         const temp = document.createElement('div');
         temp.innerHTML = this.originalHTML;
         
+				console.log('Original HTML:', this.originalHTML);
+				console.log('Temp element:', temp);
+
         this.textNodes = [];
         this.totalChars = 0;
         
         // Recursively traverse and collect text nodes with their positions
         this.traverseNodes(temp, this.element);
+
+				console.log(`Parsed ${this.textNodes.length} text nodes, total chars: ${this.totalChars}`);
+				this.textNodes.forEach((node, i) => {
+					console.log(`Node ${i}: "${node.originalText}" (${node.originalText.length} chars)`);
+				});
     }
     
     traverseNodes(sourceNode, targetParent) {
@@ -133,23 +141,44 @@ class TypewriterWithTags {
     }
     
     getNextChar() {
+				console.log(`getNextChar: nodeIndex=${this.currentNodeIndex}, charIndex=${this.currentCharIndex}, totalNodes=${this.textNodes.length}`);
+
         if (this.currentNodeIndex < this.textNodes.length) {
             const node = this.textNodes[this.currentNodeIndex];
+						console.log(`Current node text length: ${node.originalText.length}`);
+
             if (this.currentCharIndex < node.originalText.length) {
-                return node.originalText[this.currentCharIndex];
+                const char = node.originalText[this.currentCharIndex];
+								console.log(`Returning char: "${char}" (code: ${char.charCodeAt(0)})`);
+								return char;
             } else {
                 // Move to next node
+								console.log(`Moving to next node from ${this.currentNodeIndex} to ${this.currentNodeIndex + 1}`);
                 this.currentNodeIndex++;
                 this.currentCharIndex = 0;
+
+								if (this.currentNodeIndex >= this.textNodes.length) {
+									console.log(`Reached end of nodes`);
+									return null;
+								}
+
                 return this.getNextChar();
             }
         }
+				console.log(`No more characters - end of typing`);
         return null;
     }
     
     async type() {
         const currentPosition = this.getCurrentPosition();
-        
+        console.log(`type() called - position: ${currentPosition}, nodeIndex: ${this.currentNodeIdex}, charIndex: ${this.currentCharIndex}`);
+
+				// Safety check to prevent infinite loops
+				if (currentPosition > this.totalChars) {
+					console.error(`Position ${currentPosition} exceeds total chars ${this.totalChars} - stopping`);
+					return;
+				}
+				
         // Check if we should make an error at this position
         const errorIndex = this.errorPoints.indexOf(currentPosition);
         if (errorIndex !== -1) {
@@ -159,6 +188,11 @@ class TypewriterWithTags {
         
         // Get the next character to type
         const nextChar = this.getNextChar();
+				console.log(`Next char: ${nextChar ? `"${nextChar}"` : 'null'}`);
+
+				this.addCharToCurrentPosition(nextChar);
+				this.currentCharIndex++;
+				console.log(`After typing: nodeIndex=${this.currentNodeIndex}, charIndex=${this.currentCharIndex}`);
         
         if (nextChar !== null) {
             // Debug: log line feeds and special characters
