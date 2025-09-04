@@ -54,5 +54,6 @@ add_action('wp_enqueue_scripts', function () {
 
 // Enqueue scripts for typewriter effect with real typing errors simulation
 add_action('wp_enqueue_scripts', function () {
+	wp_enqueue_style('typewriter-cursor', plugin_dir_url(__FILE__) . 'cursor-animation.css');
 	wp_enqueue_script('typewriter-effect', plugin_dir_url(__FILE__) . 'typewriter.js', array(), '1.0.0', true);
 });
