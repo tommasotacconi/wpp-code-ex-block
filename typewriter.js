@@ -207,14 +207,16 @@ class TypewriterWithTags {
 }
 
 // Usage
-const codeBlocks = document.querySelectorAll('code.typewriter');
-
-codeBlocks.forEach(block => {
-    new TypewriterWithTags(block, {
-        speed: null,
-        errorSpeed: null,
-        backspaceSpeed: null,
-        errorCount: null,
-        typos: ['sr', 'p', 'eb', 'è', '+', 'x', 'q']
-    });
+document.addEventListener('DOMContentLoaded', function () {
+	const codeBlocks = document.querySelectorAll('code.typewriter');
+	
+	codeBlocks.forEach(block => {
+			new TypewriterWithTags(block, {
+					speed: null,
+					errorSpeed: null,
+					backspaceSpeed: null,
+					errorCount: null,
+					typos: ['sr', 'p', 'eb', 'è', '+', 'x', 'q']
+			});
+	});
 });
