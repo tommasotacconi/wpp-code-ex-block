@@ -120,20 +120,16 @@ class TypewriterWithTags {
     }
     
     removeLastChar() {
-        if (this.currentNodeIndex < this.textNodes.length) {
-            const node = this.textNodes[this.currentNodeIndex];
-            if (node.currentText.length > 0) {
-                node.currentText = node.currentText.slice(0, -1);
-                node.element.textContent = node.currentText;
-                return true;
-            } else if (this.currentNodeIndex > 0) {
-                // Move to previous node
-                this.currentNodeIndex--;
-                this.currentCharIndex = this.textNodes[this.currentNodeIndex].currentText.length;
-                return this.removeLastChar();
-            }
-        }
-        return false;
+				// Find the last non-empty node with text
+				for (let i = this.textNodes.length - 1; i >= 0; i--) {
+					const node = this.textNodes[i];
+					if (node.currentText.length > 0) {
+						node.currentText = node.currentText.slice(0, -1);
+						node.element.textContent = node.currentText;
+						return true;
+					}
+				}
+				return false;
     }
     
     getNextChar() {
@@ -211,6 +207,10 @@ document.addEventListener('DOMContentLoaded', function () {
 	const codeBlocks = document.querySelectorAll('code.typewriter');
 	
 	codeBlocks.forEach(block => {
+		// Only initialized if it has content and hasn't been initialized
+		if (block.innerHTML.trim() && !block.hasAttribute('data-typewriter-initialized')) {
+			block.setAttribute('data-typewriter-initialized', true);
+
 			new TypewriterWithTags(block, {
 					speed: null,
 					errorSpeed: null,
@@ -218,5 +218,6 @@ document.addEventListener('DOMContentLoaded', function () {
 					errorCount: null,
 					typos: ['sr', 'p', 'eb', 'è', '+', 'x', 'q']
 			});
+		}
 	});
 });
