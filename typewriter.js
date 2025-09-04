@@ -171,7 +171,7 @@ class TypewriterWithTags {
     
     async type() {
         const currentPosition = this.getCurrentPosition();
-        console.log(`type() called - position: ${currentPosition}, nodeIndex: ${this.currentNodeIdex}, charIndex: ${this.currentCharIndex}`);
+        console.log(`type() called - position: ${currentPosition}, nodeIndex: ${this.currentNodeIndex}, charIndex: ${this.currentCharIndex}`);
 
 				// Safety check to prevent infinite loops
 				if (currentPosition > this.totalChars) {
