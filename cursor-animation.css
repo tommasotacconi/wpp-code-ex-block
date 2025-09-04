@@ -2,6 +2,9 @@ code.typewriter::after {
 	content: '|';
 	animation: blink 1.06s infinite;
 	color: inherit;
+
+	position: relative;
+	left: -5px;
 }
 
 @keyframes blink {
