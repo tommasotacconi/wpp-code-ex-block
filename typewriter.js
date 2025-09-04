@@ -58,6 +58,10 @@ class TypewriterWithTags {
                 if (child.textContent.length > 0) {
                     const textElement = document.createTextNode('');
                     targetParent.appendChild(textElement);
+
+										console.log(`Created text node for: "${child.textContent}"`);
+										console.log(`Text element:`, textElement);
+										console.log(`Appended to:`, targetParent);
                     
                     this.textNodes.push({
                         element: textElement,
@@ -71,6 +75,8 @@ class TypewriterWithTags {
             } else if (child.nodeType === Node.ELEMENT_NODE) {
                 // It's an element node, recreate it and traverse its children
                 const newElement = document.createElement(child.tagName.toLowerCase());
+
+								console.log(`Created element: ${child.tagName.toLowerCase()}`);
                 
                 // Copy attributes
                 for (let attr of child.attributes) {
@@ -78,6 +84,8 @@ class TypewriterWithTags {
                 }
                 
                 targetParent.appendChild(newElement);
+								console.log(`Appended ${child.tagName.toLowerCase()} to:`, targetParent);
+
                 this.traverseNodes(child, newElement);
             }
         }
@@ -124,7 +132,13 @@ class TypewriterWithTags {
             node.currentText += char;
             // Use textContent to preserve whitespace and line feeds
             node.element.textContent = node.currentText;
-        }
+
+						console.log(`Added "${char}" to node ${this.currentNodeIndex}. Node text now: "${node.currentNodeText}"`);
+						console.log(`DOM element textContent: "${node.element.textContent}"`);
+						console.log(`DOM element in page:`, node.element);
+        } else {
+					console.log(`ERROR: Trying to add char to node ${this.currentNodeIndex} but only have ${this.textNodes.length} nodes`);
+				}
     }
     
     removeLastChar() {
