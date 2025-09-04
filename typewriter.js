@@ -277,7 +277,7 @@ function initTypewriterAfterPrism() {
 // Method 1: Listen for Prism's completion event
 document.addEventListener('DOMContentLoaded', function () {
 	// Hook into Prism's after-highlight event
-	Prism.hooks.add('after-hightlight', function(env) {
+	Prism.hooks.add('after-highlight', function(env) {
 		console.log('Prism highlighted:', env.element);
 
 		// Small delay to ensure DOM is updated
