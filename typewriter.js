@@ -18,8 +18,9 @@ class TypewriterWithTags {
     }
     
     init() {
-        // Clear the element
+        // Clear the element and show it
         this.element.innerHTML = '';
+				this.element.style.display = 'inline';
         
         // Parse the original HTML to extract text nodes and their positions
         this.parseHTML();
