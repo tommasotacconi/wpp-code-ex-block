@@ -51,6 +51,17 @@ add_action('wp_enqueue_scripts', function () {
 	// Add language components you need
 	wp_enqueue_script('prismjs-autoloader', 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js', array('prismjs-js'), null, true);
 });
+// Set off automatic Prism start
+add_action('wp_head', 'disable_prism_automatic_mode', 1);
+function disable_prism_automatic_mode()
+{
+?>
+	<script>
+		window.Prism = window.Prism || {};
+		window.Prism.manual = true;
+	</script>
+<?php
+}
 
 // Enqueue scripts for typewriter effect with real typing errors simulation
 add_action('wp_enqueue_scripts', function () {
