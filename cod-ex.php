@@ -31,6 +31,7 @@ add_filter('render_block', function ($block_content, $block) {
 	if (!empty($meta_value))
 		// Add language class for syntax highlighting
 		$block_content = str_replace('<code></code>', '<code class="language-javascript typewriter">' . esc_html($meta_value) . '</code>', $block_content);
+	$block_content = str_replace('<pre class="cod-ex-block">', '<pre class="cod-ex-block language-javascript">', $block_content);
 
 	return $block_content;
 }, 10, 2);
