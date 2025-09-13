@@ -50,7 +50,7 @@ class TypewriterWithTags {
 				const evalOut = eval?.(`"use strict";` + codeString);
 				// console.log(evalOut); 
 
-				return evalOut;
+				return JSON.stringify(evalOut);
 			});
 		} 
 		
